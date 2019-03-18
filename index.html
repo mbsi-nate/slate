@@ -649,7 +649,11 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 </aside>
 <h2 id='assignment-create'>Assignment: Create</h2>
 <p>To create an assignment</p>
-<h3 id='step-1'>Step 1</h3>
+<h3 id='create-an-asset'>Create an asset</h3>
+<blockquote>
+<p>Fill in the details about the asset</p>
+</blockquote>
+
 <p>Create an asset or retrieve an existing one.</p>
 
 <table><thead>
@@ -666,24 +670,101 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 <td>/api/20191001/assets</td>
 <td>20191001</td>
 </tr>
+<tr>
+<td>Existing Asset</td>
+<td>GET</td>
+<td>/api/20191001/asset/{ID}</td>
+<td>20191001</td>
+</tr>
 </tbody></table>
-
-<blockquote>
-<p>Fill in the details about the asset</p>
-</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"vin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1G1YY12S245107908"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chevrolet"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corvette"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2004"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90000"</span><span class="w">
+ </span><span class="s2">"vin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1G1YY12S245107908"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chevrolet"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corvette"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2004"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13211"</span><span class="w">
+ </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13211"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='optionally-create-a-debtor-contact'>Optionally create a debtor contact</h3>
+<blockquote>
+<p>Fill in the details about the contact</p>
+</blockquote>
+
+<p>Create a debtor contact or retrieve an existing one.</p>
+
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>New Contact</td>
+<td>POST</td>
+<td>/api/20191001/contacts</td>
+<td>20191001</td>
+</tr>
+<tr>
+<td>Existing Contact</td>
+<td>GET</td>
+<td>/api/20191001/contact/{ID}</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary debtor"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1975-01-01"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44321"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='create-an-order'>Create an order</h3>
+<blockquote>
+<p>Fill in the data</p>
+</blockquote>
+
+<p>Create an asset or retrieve an existing one.</p>
+
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>New Order</td>
+<td>POST</td>
+<td>/api/20191001/orders</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repossess"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13211"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"debtors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44321"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='versions'>Versions</h1><h2 id='v20191001'>v20191001</h2>
 <p>Initial version.</p>
