@@ -732,10 +732,6 @@ Resources that are depedent on each other will exist with temporary IDs until a 
  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44321"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='create-an-order'>Create an order</h3>
-<blockquote>
-<p>Fill in the data</p>
-</blockquote>
-
 <p>Create an asset or retrieve an existing one.</p>
 
 <table><thead>
@@ -753,6 +749,10 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 <td>20191001</td>
 </tr>
 </tbody></table>
+
+<blockquote>
+<p>Fill in the data</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repossess"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -763,6 +763,32 @@ Resources that are depedent on each other will exist with temporary IDs until a 
   </span><span class="s2">"debtors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44321"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response is full representation of the new order</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"773421"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1G1YY12S245107908"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chevrolet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corvette"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2004"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90000"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"debtors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45621"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary debtor"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1975-01-01"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
