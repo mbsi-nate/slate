@@ -294,6 +294,14 @@
               </ul>
           </li>
           <li>
+            <a href="#workflows" class="toc-h1 toc-link" data-title="Workflows">Workflows</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#assignment-create" class="toc-h2 toc-link" data-title="Assignment: Create">Assignment: Create</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#versions" class="toc-h1 toc-link" data-title="Versions">Versions</a>
               <ul class="toc-list-h2">
                   <li>
@@ -629,7 +637,55 @@ Some operations require an individual ID
 <td>20191001</td>
 </tr>
 </tbody></table>
-<h3 id='workflows'>Workflows</h3><h3 id='user-types'>User Types</h3><h1 id='versions'>Versions</h1><h2 id='v20191001'>v20191001</h2>
+<h3 id='workflows'>Workflows</h3><h3 id='user-types'>User Types</h3><h1 id='workflows'>Workflows</h1>
+<p>Business operations are supported by utilizing workflows.</p>
+
+<aside class="notice">
+Each workflow depends on one or more resources to operate.
+</aside>
+
+<aside class="notice">
+Resources that are depedent on each other will exist with temporary IDs until a workflow connects them.
+</aside>
+<h2 id='assignment-create'>Assignment: Create</h2>
+<p>To create an assignment</p>
+<h3 id='step-1'>Step 1</h3>
+<p>Create an asset or retrieve an existing one.</p>
+
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>New Asset</td>
+<td>POST</td>
+<td>/api/20191001/assets</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Fill in the details about the asset</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1G1YY12S245107908"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chevrolet"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corvette"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2004"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13211"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='versions'>Versions</h1><h2 id='v20191001'>v20191001</h2>
 <p>Initial version.</p>
 <h3 id='changelog'>Changelog</h3>
 <p>Initial version.</p>
