@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,7 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -225,28 +223,87 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#versioning" class="toc-h1 toc-link" data-title="Versioning">Versioning</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#specifying-version" class="toc-h2 toc-link" data-title="Specifying version">Specifying version</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#unspecified-version" class="toc-h2 toc-link" data-title="Unspecified version">Unspecified version</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#hotfixes" class="toc-h2 toc-link" data-title="Hotfixes">Hotfixes</a>
+                  </li>
+                  <li>
+                    <a href="#prior-releases" class="toc-h2 toc-link" data-title="Prior releases">Prior releases</a>
+                  </li>
+                  <li>
+                    <a href="#open-closed-model" class="toc-h2 toc-link" data-title="Open/closed model">Open/closed model</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-keys" class="toc-h2 toc-link" data-title="API Keys">API Keys</a>
+                  </li>
+                  <li>
+                    <a href="#authentication-tokens" class="toc-h2 toc-link" data-title="Authentication Tokens">Authentication Tokens</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#protocols" class="toc-h1 toc-link" data-title="Protocols">Protocols</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#required-headers" class="toc-h2 toc-link" data-title="Required headers">Required headers</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#environments" class="toc-h1 toc-link" data-title="Environments">Environments</a>
+          </li>
+          <li>
+            <a href="#response-codes" class="toc-h1 toc-link" data-title="Response Codes">Response Codes</a>
+          </li>
+          <li>
+            <a href="#resources" class="toc-h1 toc-link" data-title="Resources">Resources</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#assignments" class="toc-h2 toc-link" data-title="Assignments">Assignments</a>
+                  </li>
+                  <li>
+                    <a href="#contacts" class="toc-h2 toc-link" data-title="Contacts">Contacts</a>
+                  </li>
+                  <li>
+                    <a href="#entities" class="toc-h2 toc-link" data-title="Entities">Entities</a>
+                  </li>
+                  <li>
+                    <a href="#orders" class="toc-h2 toc-link" data-title="Orders">Orders</a>
+                  </li>
+                  <li>
+                    <a href="#phones" class="toc-h2 toc-link" data-title="Phones">Phones</a>
+                  </li>
+                  <li>
+                    <a href="#updates" class="toc-h2 toc-link" data-title="Updates">Updates</a>
+                  </li>
+                  <li>
+                    <a href="#users" class="toc-h2 toc-link" data-title="Users">Users</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#versions" class="toc-h1 toc-link" data-title="Versions">Versions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#v20191001" class="toc-h2 toc-link" data-title="v20191001">v20191001</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='#'>Contact us for an API Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -254,250 +311,336 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the MBSi API.</p>
+<h1 id='versioning'>Versioning</h1>
+<p>When backwards-incompatible changes or new features are added to the API, we release new, dated versions in YYYYmmdd format. The current version is <strong>v20191001</strong>. </p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>The version of the API that fulfilled your request will be included in the response headers as <strong>x-api-version</strong>.</p>
+<h2 id='specifying-version'>Specifying version</h2>
+<p>To access a specific version of the API, specify the version number in the URL.  Eg: <em>/api/v20191001/hello_world</em></p>
+<pre class="highlight shell tab-shell"><code>curl GET <span class="s2">"http://stage.re-pros.io/api/v20191001/hello_world"</span>
+</code></pre><h2 id='unspecified-version'>Unspecified version</h2>
+<p>When a version is not specified in the request URL the latest release of the API will be used by default.  Eg:  <em>/api/hello_world</em></p>
+<h2 id='hotfixes'>Hotfixes</h2>
+<p>When hotfixes are released for a given version, an additional incrementing will be appended to the API Version.  Eg:  v20191001-1</p>
+<h2 id='prior-releases'>Prior releases</h2>
+<p>Prior versions of the API will be supported for <em>3 weeks</em>, unless a security-related or system-impacting issue is identified. Depending on the severity of such an issue we will take action to remedy via one or more of the following methods.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<ul>
+<li>Back-porting the fix into a previous version</li>
+<li>Restricting access or altering the endpoint identified in the issue.</li>
+<li>Accelerating the sunset timeline of the previous version</li>
+</ul>
+<h2 id='open-closed-model'>Open/closed model</h2>
+<p>We follow the open/closed principle with all request/response data models in the the API.  Models will be open for extension but closed for modification.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>This means a model may be revised within a given version to include additional fields but existing fields will not be altered or removed without a new API version being created.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>When writing clients to communicate with the API you will need to handle potential additional fields that may not have been specified during initial development in responses to ensure they do not break your client.</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>Conversely, the API will ignore any extra request body properties that your client sends.</p>
+<h1 id='authentication'>Authentication</h1><h2 id='api-keys'>API Keys</h2>
+<p>All requests require an <strong>x-api-key</strong> header in addition to a valid <strong>Authentication</strong> header.</p>
+<h3 id='obtaining-an-api-key'>Obtaining an API Key</h3>
+<p>API Keys must be obtained from your account rep.  Contact support at <strong>1-800-some-number</strong> or <strong>someemail@mbsicorp.com</strong> for assistance.</p>
+<h2 id='authentication-tokens'>Authentication Tokens</h2>
+<p>All requests require an <strong>Authentication</strong> header in addition to the aforementioned <strong>x-api-key</strong> token.  </p>
+<h3 id='obtaining-an-authentication-token'>Obtaining an Authentication Token</h3>
+<p>Invoking the authentication endpoints with a valid API Key and valid credentials will issue a bearer token that can be used to make further requests.  See endpoint documentation for details.</p>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://test.re-pros.io/api/auth"</span> -H <span class="s2">"x-api-key: yourapikey"</span> -H <span class="s2">"accept: application/json"</span> -D <span class="s2">"{ </span><span class="se">\"</span><span class="s2">user</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">username</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">pass</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">password</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre><h1 id='protocols'>Protocols</h1>
+<p>All API endpoints are secured via HTTPS and TLS 1.2</p>
+<h2 id='required-headers'>Required headers</h2>
+<p>All requests must specify an <strong>accept</strong> header (accept: application/json), a <strong>x-api-key</strong> header, and an <strong>authorization</strong> header.</p>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://test.re-pros.io/api/auth"</span> -H <span class="s2">"x-api-key: yourapikey"</span> -H <span class="s2">"authorization: Bearer yourauthtokenhere"</span> -H <span class="s2">"accept: application/json"</span> -D <span class="s2">"{ </span><span class="se">\"</span><span class="s2">user</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">username</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">pass</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">password</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre><h1 id='environments'>Environments</h1>
+<p>All changes to the API flow through these three stages.</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+<table><thead>
+<tr>
+<th>Environment</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>test</td>
+<td>https://test.re-pros.io/api</td>
+</tr>
+<tr>
+<td>stage</td>
+<td>https://stage.re-pros.io/api</td>
+</tr>
+<tr>
+<td>production</td>
+<td>https://production.re-pros.io/api</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Development for new users should begin at the *stage* environment unless circumstances dictate otherwise.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
+ 
+<h1 id='response-codes'>Response Codes</h1>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Payload returned for failed requests</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Code further representing the state"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Message type ID"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One or more details about what happened"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Code</th>
+<th>Summary</th>
+<th>Details</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>200</td>
+<td>OK</td>
+<td>Worked as expected</td>
 </tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<td>201</td>
+<td>OK</td>
+<td>Resource created</td>
 </tr>
-</thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>204</td>
+<td>OK</td>
+<td>Resource successfully deleted</td>
 </tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<td>304</td>
+<td>Not Modified</td>
+<td>Client can use cached data</td>
 </tr>
-</thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad Request</td>
+<td>Something was wrong with the request, details will appear in the response payload</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>Unauthorized</td>
+<td>Something is wrong with the authentication token on the request</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden</td>
+<td>Request was received but refused due to a permissions issue.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not found</td>
+<td>No resource matched the requested URI</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>422</td>
+<td>Unprocessable</td>
+<td>Returned if the server could not process the request</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Internal Server Error</td>
+<td>An internal error occurred that has been logged for investigation</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+Code 422 could be returned if an expected field was missing.
+</aside>
+<h1 id='resources'>Resources</h1>
+<p>Every entity available in the API is described as a resource.</p>
+
+<p>Each resource is operated upon individually or as a collection.</p>
+
+<aside class="notice">
+Some resources and collections of resources may not support all operations (create, read, update, delete).
+</aside>
+
+<aside class="notice">
+Some operations require an individual ID, denoted like api/order/{ID}
+</aside>
+
+<p>Resources are used in workflows.<br>
+Workflows are leveraged to support all business operations.</p>
+<h2 id='assignments'>Assignments</h2>
+<p>An assignment represents an active request for work in the system.</p>
+<h3 id='operations'>Operations</h3>
+<p>The following operations are allowed on the <strong>assignments</strong> resource.</p>
+
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Create</td>
+<td>POST</td>
+<td>api/assignments</td>
+<td>v20191001</td>
+</tr>
+<tr>
+<td>Retrieve all</td>
+<td>GET</td>
+<td>api/assignments</td>
+<td>v20191001</td>
+</tr>
+<tr>
+<td>Retrieve new</td>
+<td>GET</td>
+<td>api/assignments/new</td>
+<td>v20191001</td>
+</tr>
+<tr>
+<td>Retrieve individual</td>
+<td>GET</td>
+<td>api/assignment/{ID}</td>
+<td>v20191001</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Some operations require an individual ID
+</aside>
+<h3 id='workflows'>Workflows</h3>
+<p>The following workflows are available:</p>
+
+<ul>
+<li>Create an assignment</li>
+<li>Accept an assignment</li>
+<li>Reject an assignment</li>
+<li>Hold an assignment</li>
+<li>Close an assignment</li>
+<li>Request an update on an assignment</li>
+<li>Reassign an assignment</li>
+<li>Forward an assignment</li>
+<li>Update an assignment</li>
+</ul>
+<h2 id='contacts'>Contacts</h2><h3 id='operations'>Operations</h3><h3 id='workflows'>Workflows</h3><h3 id='contact-types'>Contact Types</h3><h2 id='entities'>Entities</h2>
+<p>Business entities represents a recovery service provider or a client or a police department.</p>
+<h3 id='operations'>Operations</h3>
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>foo</td>
+<td>GET</td>
+<td>/api/foo</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+<h3 id='workflows'>Workflows</h3><h2 id='orders'>Orders</h2>
+<p>An order represents an inactive or unassigned request for work in the system.</p>
+<h3 id='operations'>Operations</h3>
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Create</td>
+<td>POST</td>
+<td>api/orders</td>
+<td>v20191001</td>
+</tr>
+<tr>
+<td>Retrieve all</td>
+<td>GET</td>
+<td>api/orders</td>
+<td>v20191001</td>
+</tr>
+<tr>
+<td>Retrieve individual</td>
+<td>GET</td>
+<td>api/order/{ID}</td>
+<td>v20191001</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>DELETE</td>
+<td>api/order/{ID}</td>
+<td>v20191001</td>
+</tr>
+<tr>
+<td>Edit</td>
+<td>PUT</td>
+<td>api/order/{ID}</td>
+<td>v20191001</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Some operations require an individual ID
+</aside>
+<h3 id='workflows'>Workflows</h3>
+<ul>
+<li>Assign order</li>
+<li>Hold order</li>
+<li>Delete order</li>
+</ul>
+<h3 id='order-types'>Order Types</h3><h2 id='phones'>Phones</h2><h3 id='operations'>Operations</h3>
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>foo</td>
+<td>GET</td>
+<td>/api/foo</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+<h3 id='workflows'>Workflows</h3><h3 id='phone-types'>Phone Types</h3><h2 id='updates'>Updates</h2><h3 id='operations'>Operations</h3><h3 id='workflows'>Workflows</h3><h3 id='update-types'>Update Types</h3><h2 id='users'>Users</h2><h3 id='operations'>Operations</h3>
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>foo</td>
+<td>GET</td>
+<td>/api/foo</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+<h3 id='workflows'>Workflows</h3><h3 id='user-types'>User Types</h3><h1 id='versions'>Versions</h1><h2 id='v20191001'>v20191001</h2>
+<p>Initial version.</p>
+<h3 id='changelog'>Changelog</h3>
+<p>Initial version.</p>
+<h4 id='upgrade-guide'>Upgrade guide</h4>
+<p>N/A</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
