@@ -732,7 +732,7 @@ Resources that are depedent on each other will exist with temporary IDs until a 
  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44321"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='create-an-order'>Create an order</h3>
-<p>Create an asset or retrieve an existing one.</p>
+<p>Create an order.</p>
 
 <table><thead>
 <tr>
@@ -791,6 +791,42 @@ Resources that are depedent on each other will exist with temporary IDs until a 
       </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1975-01-01"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='create-the-assignment'>Create the assignment</h3>
+<p>Use the new order ID, and the location ID of the repossession service provider you want to assign the order to.</p>
+
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>New Assignment</td>
+<td>POST</td>
+<td>/api/20191001/assignments</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Fill in the data</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"entity_location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3214"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response is full representation of the new order</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"assigned"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"assignment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5543213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"assignment_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='versions'>Versions</h1><h2 id='v20191001'>v20191001</h2>
 <p>Initial version.</p>
