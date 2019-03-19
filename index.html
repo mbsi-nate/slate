@@ -565,7 +565,7 @@ Workflows are leveraged to support all business operations.</p>
 <tr>
 <td>Retrieve new</td>
 <td>GET</td>
-<td>api/assignments/new</td>
+<td>api/assignments?filter=new</td>
 <td>v20191001</td>
 </tr>
 <tr>
@@ -583,7 +583,8 @@ Some operations require an individual ID
 <p>The following workflows are available:</p>
 
 <ul>
-<li>Create an assignment</li>
+<li><a href="#assignment-create">Create an assignment</a></li>
+<li><a href="#assignment-retrieve-new">Retrieve new assignments</a></li>
 <li>Accept an assignment</li>
 <li>Reject an assignment</li>
 <li>Hold an assignment</li>
@@ -735,8 +736,8 @@ Temporary resources created to complete a workflow will expire.
 <tr>
 <td>New Assignment</td>
 <td>POST</td>
-<td>/api/20191001/assignments</td>
-<td>20191001</td>
+<td>/api/assignments</td>
+<td>v20191001</td>
 </tr>
 </tbody></table>
 
@@ -784,14 +785,14 @@ Temporary resources created to complete a workflow will expire.
 <tr>
 <td>New Asset</td>
 <td>POST</td>
-<td>/api/20191001/assets</td>
-<td>20191001</td>
+<td>/api/assets</td>
+<td>v20191001</td>
 </tr>
 <tr>
 <td>Existing Asset</td>
 <td>GET</td>
-<td>/api/20191001/asset/{ID}</td>
-<td>20191001</td>
+<td>/api/asset/{ID}</td>
+<td>v20191001</td>
 </tr>
 </tbody></table>
 
@@ -835,14 +836,14 @@ Temporary resources created to complete a workflow will expire.
 <tr>
 <td>New Contact</td>
 <td>POST</td>
-<td>/api/20191001/contacts</td>
-<td>20191001</td>
+<td>/api/contacts</td>
+<td>v20191001</td>
 </tr>
 <tr>
 <td>Existing Contact</td>
 <td>GET</td>
-<td>/api/20191001/contact/{ID}</td>
-<td>20191001</td>
+<td>/api/contact/{ID}</td>
+<td>v20191001</td>
 </tr>
 </tbody></table>
 
@@ -885,8 +886,8 @@ Temporary resources created to complete a workflow will expire.
 <tr>
 <td>New Order</td>
 <td>POST</td>
-<td>/api/20191001/orders</td>
-<td>20191001</td>
+<td>/api/orders</td>
+<td>v20191001</td>
 </tr>
 </tbody></table>
 
