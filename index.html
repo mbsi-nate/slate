@@ -303,6 +303,9 @@
                     <a href="#assignment-create" class="toc-h2 toc-link" data-title="Assignment: Create">Assignment: Create</a>
                   </li>
                   <li>
+                    <a href="#assignments-retrieve-new" class="toc-h2 toc-link" data-title="Assignments: Retrieve New">Assignments: Retrieve New</a>
+                  </li>
+                  <li>
                     <a href="#order-create" class="toc-h2 toc-link" data-title="Order: Create">Order: Create</a>
                   </li>
               </ul>
@@ -761,6 +764,66 @@ Temporary resources created to complete a workflow will expire.
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"assignment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/assignment/5543213"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='assignments-retrieve-new'>Assignments: Retrieve New</h2>
+<p>To retrieve new assignments apply a filter to the assignments resource using a query string.</p>
+
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Retrieve New Assignments</td>
+<td>GET</td>
+<td>/api/assignments?filter=new</td>
+<td>v20191001</td>
+</tr>
+</tbody></table>
+
+<p><code>GET https://stage.re-pros.io/api/assignments?filter=new</code></p>
+
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"perPage"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5543213"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33341"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"321232"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="w"> 
+            </span><span class="p">}</span><span class="w"> 
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"debtors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54321"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">      
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/assignments?filter=new&amp;page=0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/assignments?filter=new&amp;page=2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
