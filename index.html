@@ -223,13 +223,16 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#goals" class="toc-h1 toc-link" data-title="Goals">Goals</a>
+          </li>
+          <li>
+            <a href="#response-structure" class="toc-h1 toc-link" data-title="Response Structure">Response Structure</a>
+          </li>
+          <li>
             <a href="#versioning" class="toc-h1 toc-link" data-title="Versioning">Versioning</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#specifying-version" class="toc-h2 toc-link" data-title="Specifying version">Specifying version</a>
-                  </li>
-                  <li>
-                    <a href="#unspecified-version" class="toc-h2 toc-link" data-title="Unspecified version">Unspecified version</a>
                   </li>
                   <li>
                     <a href="#hotfixes" class="toc-h2 toc-link" data-title="Hotfixes">Hotfixes</a>
@@ -299,6 +302,9 @@
                   <li>
                     <a href="#assignment-create" class="toc-h2 toc-link" data-title="Assignment: Create">Assignment: Create</a>
                   </li>
+                  <li>
+                    <a href="#order-create" class="toc-h2 toc-link" data-title="Order: Create">Order: Create</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -320,15 +326,67 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the MBSi API.</p>
-<h1 id='versioning'>Versioning</h1>
+<h1 id='goals'>Goals</h1>
+<p>The MBSi API strives to be chatty, not chunky.  Responses will contain references to data through <em>links</em> fields.</p>
+<h1 id='response-structure'>Response Structure</h1>
+<p>Responses will contain a <strong>data</strong> array and a <strong>links</strong> array.</p>
+
+<blockquote>
+<p>Example chatty response structure</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"relatedResources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"resourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/resource/123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"relatedResources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"relatedResource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/relatedResource/456"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"relatedResource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/relatedResource/789"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='versioning'>Versioning</h1>
 <p>When backwards-incompatible changes or new features are added to the API, we release new, dated versions in YYYYmmdd format. The current version is <strong>v20191001</strong>. </p>
 
 <p>The version of the API that fulfilled your request will be included in the response headers as <strong>x-api-version</strong>.</p>
+
+<p><code>x-response-api-version: v20191001</code></p>
 <h2 id='specifying-version'>Specifying version</h2>
-<p>To access a specific version of the API, specify the version number in the URL.  Eg: <em>/api/v20191001/hello_world</em></p>
+<p>To access a specific version of the API, specify the version number in header.  </p>
+
+<p><code>x-request-api-version: v20191001</code></p>
 <pre class="highlight shell tab-shell"><code>curl GET <span class="s2">"http://stage.re-pros.io/api/v20191001/hello_world"</span>
-</code></pre><h2 id='unspecified-version'>Unspecified version</h2>
-<p>When a version is not specified in the request URL the latest release of the API will be used by default.  Eg:  <em>/api/hello_world</em></p>
+</code></pre>
+<aside class="notice">
+Unspecified API Version
+
+When a version is not specified in the request URL the latest release of the API will be used by default. 
+</aside>
+
+<aside class="warning">
+Unsupported API Version
+
+If the version requested is no longer available or supported the request will be upgraded to the next available version.
+The x-response-api-version header will reflect this.  
+</aside>
 <h2 id='hotfixes'>Hotfixes</h2>
 <p>When hotfixes are released for a given version, an additional incrementing will be appended to the API Version.  Eg:  v20191001-1</p>
 <h2 id='prior-releases'>Prior releases</h2>
@@ -521,7 +579,7 @@ Workflows are leveraged to support all business operations.</p>
 <aside class="notice">
 Some operations require an individual ID
 </aside>
-<h3 id='workflows'>Workflows</h3>
+<h3 id='supports-workflows'>Supports Workflows</h3>
 <p>The following workflows are available:</p>
 
 <ul>
@@ -535,7 +593,7 @@ Some operations require an individual ID
 <li>Forward an assignment</li>
 <li>Update an assignment</li>
 </ul>
-<h2 id='contacts'>Contacts</h2><h3 id='operations'>Operations</h3><h3 id='workflows'>Workflows</h3><h3 id='contact-types'>Contact Types</h3><h2 id='entities'>Entities</h2>
+<h2 id='contacts'>Contacts</h2><h3 id='operations'>Operations</h3><h3 id='supports-workflows'>Supports Workflows</h3><h3 id='contact-types'>Contact Types</h3><h2 id='entities'>Entities</h2>
 <p>Business entities represents a recovery service provider or a client or a police department.</p>
 <h3 id='operations'>Operations</h3>
 <table><thead>
@@ -553,7 +611,7 @@ Some operations require an individual ID
 <td>20191001</td>
 </tr>
 </tbody></table>
-<h3 id='workflows'>Workflows</h3><h2 id='orders'>Orders</h2>
+<h3 id='supports-workflows'>Supports Workflows</h3><h2 id='orders'>Orders</h2>
 <p>An order represents an inactive or unassigned request for work in the system.</p>
 <h3 id='operations'>Operations</h3>
 <table><thead>
@@ -599,11 +657,14 @@ Some operations require an individual ID
 <aside class="notice">
 Some operations require an individual ID
 </aside>
-<h3 id='workflows'>Workflows</h3>
+<h3 id='supports-workflows'>Supports Workflows</h3>
+<p>The following workflows are dependent on this resource.</p>
+
 <ul>
-<li>Assign order</li>
-<li>Hold order</li>
-<li>Delete order</li>
+<li><a href="#assignment-create">Create Assignment</a></li>
+<li><p><a href="#order-create">Create Order</a></p></li>
+<li><p>Hold order</p></li>
+<li><p>Delete order</p></li>
 </ul>
 <h3 id='order-types'>Order Types</h3><h2 id='phones'>Phones</h2><h3 id='operations'>Operations</h3>
 <table><thead>
@@ -621,7 +682,7 @@ Some operations require an individual ID
 <td>20191001</td>
 </tr>
 </tbody></table>
-<h3 id='workflows'>Workflows</h3><h3 id='phone-types'>Phone Types</h3><h2 id='updates'>Updates</h2><h3 id='operations'>Operations</h3><h3 id='workflows'>Workflows</h3><h3 id='update-types'>Update Types</h3><h2 id='users'>Users</h2><h3 id='operations'>Operations</h3>
+<h3 id='supports-workflows'>Supports Workflows</h3><h3 id='phone-types'>Phone Types</h3><h2 id='updates'>Updates</h2><h3 id='operations'>Operations</h3><h3 id='supports-workflows'>Supports Workflows</h3><h3 id='update-types'>Update Types</h3><h2 id='users'>Users</h2><h3 id='operations'>Operations</h3>
 <table><thead>
 <tr>
 <th>Operation</th>
@@ -637,23 +698,79 @@ Some operations require an individual ID
 <td>20191001</td>
 </tr>
 </tbody></table>
-<h3 id='workflows'>Workflows</h3><h3 id='user-types'>User Types</h3><h1 id='workflows'>Workflows</h1>
+<h3 id='supports-workflows'>Supports Workflows</h3><h3 id='user-types'>User Types</h3><h1 id='workflows'>Workflows</h1>
 <p>Business operations are supported by utilizing workflows.</p>
 
 <aside class="notice">
 Each workflow depends on one or more resources to operate.
 </aside>
 
-<aside class="notice">
-Resources that are depedent on each other will exist with temporary IDs until a workflow connects them.
+<aside class="warning">
+Newly create resources that are depedent on others will exist with temporary IDs until a workflow connects them.
+
+Temporary resources created to complete a workflow will expire. 
 </aside>
 <h2 id='assignment-create'>Assignment: Create</h2>
-<p>To create an assignment</p>
-<h3 id='create-an-asset'>Create an asset</h3>
-<blockquote>
-<p>Fill in the details about the asset</p>
-</blockquote>
+<p>In order to create an assignment you need the following:</p>
 
+<ol>
+<li>An <strong>order</strong></li>
+<li>The location ID number of the recovery service provider <strong>entity</strong> that you want to <em>assign</em> the order to. </li>
+</ol>
+<h3 id='create-an-order'>Create an order</h3>
+<aside class="notice">
+    See referenced workflow: <a href="#order-create">Create an Order</a>
+</aside>
+<h3 id='create-the-assignment'>Create the assignment</h3>
+<p>Use the order ID, and the location ID of the repossession service provider you want to assign the order to.</p>
+
+<table><thead>
+<tr>
+<th>Operation</th>
+<th>HTTP method</th>
+<th>Endpoint</th>
+<th>Starting with</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>New Assignment</td>
+<td>POST</td>
+<td>/api/20191001/assignments</td>
+<td>20191001</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Fill in the data</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"entity_location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3214"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5543213"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"assignment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/assignment/5543213"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='order-create'>Order: Create</h2>
+<p>In order to create an order you need the following:</p>
+
+<ol>
+<li>At least one <strong>asset</strong></li>
+<li>At least one <strong>contact</strong> (debtor)</li>
+</ol>
+<h3 id='create-an-asset'>Create an asset</h3>
 <p>Create an asset or retrieve an existing one.</p>
 
 <table><thead>
@@ -677,6 +794,10 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 <td>20191001</td>
 </tr>
 </tbody></table>
+
+<blockquote>
+<p>Fill in the details about the asset</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
  </span><span class="s2">"vin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1G1YY12S245107908"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chevrolet"</span><span class="p">,</span><span class="w">
@@ -689,13 +810,18 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13211"</span><span class="w">
+ </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13211"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/20191001/asset/13211"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='optionally-create-a-debtor-contact'>Optionally create a debtor contact</h3>
-<blockquote>
-<p>Fill in the details about the contact</p>
-</blockquote>
-
+</span></code></pre><h3 id='create-or-retrieve-a-debtor-contact'>Create or retrieve a debtor contact</h3>
 <p>Create a debtor contact or retrieve an existing one.</p>
 
 <table><thead>
@@ -719,6 +845,10 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 <td>20191001</td>
 </tr>
 </tbody></table>
+
+<blockquote>
+<p>Fill in the details about the contact</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary debtor"</span><span class="p">,</span><span class="w">
@@ -729,7 +859,17 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44321"</span><span class="w">
+ </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44321"</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"contact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/20191001/contact/44321"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='create-an-order'>Create an order</h3>
 <p>Create an order.</p>
@@ -768,65 +908,36 @@ Resources that are depedent on each other will exist with temporary IDs until a 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Response is full representation of the new order</p>
+<p>Response </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"773421"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"debtors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45621"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"773421"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"vin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1G1YY12S245107908"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chevrolet"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corvette"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2004"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90000"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"debtors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45621"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary debtor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1975-01-01"</span><span class="w">
+      </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/order/765753"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/asset/773421"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"debtors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api/contact/45621"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='create-the-assignment'>Create the assignment</h3>
-<p>Use the new order ID, and the location ID of the repossession service provider you want to assign the order to.</p>
-
-<table><thead>
-<tr>
-<th>Operation</th>
-<th>HTTP method</th>
-<th>Endpoint</th>
-<th>Starting with</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>New Assignment</td>
-<td>POST</td>
-<td>/api/20191001/assignments</td>
-<td>20191001</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Fill in the data</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"entity_location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3214"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Response is full representation of the new order</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"765753"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"order_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"assigned"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"assignment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5543213"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"assignment_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='versions'>Versions</h1><h2 id='v20191001'>v20191001</h2>
 <p>Initial version.</p>
